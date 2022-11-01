@@ -31,3 +31,9 @@ jobs:
           # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
           creds: ${{ secrets.AZURE_SPN_CREDENTIAL }}
 
+      - name: az bicep deploy
+        working-directory: '{github.workspace}/src/bicep'
+        run: |
+          az deployment group create --resource-group geir-forsmo-sandbox --template-file ./storage_account.bicep
+
+
